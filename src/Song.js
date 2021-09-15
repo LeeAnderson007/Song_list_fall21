@@ -1,6 +1,8 @@
 import React from "react";
-import { Button, Table } from "semantic-ui-react";
+import { Button, Table, Icon, Image } from "semantic-ui-react";
 import SongForm from "./SongForm";
+import styled, { keyframes } from "styled-components";
+import { s } from "keyboard-key";
 
 class Song extends React.Component {
   state = { showForm: false };
@@ -26,7 +28,14 @@ class Song extends React.Component {
     }
     return (
       <Table.Row key={this.props.id}>
-        <Table.Cell>{this.props.name}</Table.Cell>
+        <Table.Cell>{this.props.name}
+        <Music>
+                    <Icon size="large" name="music" />
+                  </Music>
+        <Image src={this.props.link} />
+      
+        </Table.Cell>
+      
         <Table.Cell>{this.props.artist}</Table.Cell>
         <Table.Cell>
           <Button
@@ -43,5 +52,20 @@ class Song extends React.Component {
     );
   }
 }
-
+const rotate45 = keyframes`
+from {
+  transform:rotate(0deg);
+  color: orange;
+}
+to {
+  transform:rotate(45deg);
+  color: blue;
+}
+`;
+const Music = styled.div`
+  fontsize: 30px;
+  display: inline-block;
+  color: orange;
+  animation: ${rotate45} 2s linear infinite;
+  `;
 export default Song;
